@@ -21,7 +21,7 @@ namespace Projeto_AssistenciaTec.Data
                 var conexao = new SqlConnection(ConexaoString);
                 conexao.Open();
 
-                MessageBox.Show("COnexão Efetuada com Sucesso",
+                MessageBox.Show("Conexão efetuada com sucesso",
                     "Conectado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -32,7 +32,7 @@ namespace Projeto_AssistenciaTec.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Ocorreu um erro na Conexão",
+                MessageBox.Show(" Ocorreu um erro na conexão" + ex.Message,
                     "Falha",
                   MessageBoxButtons.OK,
                   MessageBoxIcon.Error);

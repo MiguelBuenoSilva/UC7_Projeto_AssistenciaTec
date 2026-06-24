@@ -99,6 +99,7 @@
             MenuItemConectar.Name = "MenuItemConectar";
             MenuItemConectar.Size = new Size(67, 20);
             MenuItemConectar.Text = "Conectar";
+            MenuItemConectar.Click += MenuItemConectar_Click;
             // 
             // FrmPrincipal
             // 
