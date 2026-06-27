@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             TsmPrincipal = new MenuStrip();
             MenuItemArquirvo = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
@@ -72,13 +73,14 @@
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(120, 22);
+            clienteToolStripMenuItem.Size = new Size(180, 22);
             clienteToolStripMenuItem.Text = "Clientes";
+            clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
             // técnicosToolStripMenuItem
             // 
             técnicosToolStripMenuItem.Name = "técnicosToolStripMenuItem";
-            técnicosToolStripMenuItem.Size = new Size(120, 22);
+            técnicosToolStripMenuItem.Size = new Size(180, 22);
             técnicosToolStripMenuItem.Text = "Técnicos";
             // 
             // MenuItemOS
@@ -107,10 +109,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(TsmPrincipal);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
             MainMenuStrip = TsmPrincipal;
             Name = "FrmPrincipal";
             Text = "Gestão de Ordem de Serviços";
+            WindowState = FormWindowState.Maximized;
             TsmPrincipal.ResumeLayout(false);
             TsmPrincipal.PerformLayout();
             ResumeLayout(false);
