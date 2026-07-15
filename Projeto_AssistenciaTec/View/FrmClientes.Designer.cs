@@ -41,7 +41,7 @@
             LabelId = new Label();
             label1 = new Label();
             groupBox1 = new GroupBox();
-            listView1 = new ListView();
+            DatagridViewClientes = new DataGridView();
             BtnBuscar = new Button();
             TxtBuscarNome = new TextBox();
             label9 = new Label();
@@ -58,6 +58,7 @@
             panel2 = new Panel();
             GroupBoxDadosCliente.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DatagridViewClientes).BeginInit();
             toolStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -151,7 +152,7 @@
             // 
             // LabelId
             // 
-            LabelId.BackColor = Color.SkyBlue;
+            LabelId.BackColor = Color.SpringGreen;
             LabelId.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelId.Location = new Point(145, 45);
             LabelId.Name = "LabelId";
@@ -171,7 +172,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(listView1);
+            groupBox1.Controls.Add(DatagridViewClientes);
             groupBox1.Controls.Add(BtnBuscar);
             groupBox1.Controls.Add(TxtBuscarNome);
             groupBox1.Controls.Add(label9);
@@ -182,14 +183,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Lista de clientes cadastrados:";
             // 
-            // listView1
+            // DatagridViewClientes
             // 
-            listView1.BackColor = SystemColors.WindowFrame;
-            listView1.Location = new Point(6, 109);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(658, 371);
-            listView1.TabIndex = 5;
-            listView1.UseCompatibleStateImageBehavior = false;
+            DatagridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DatagridViewClientes.Location = new Point(3, 98);
+            DatagridViewClientes.Name = "DatagridViewClientes";
+            DatagridViewClientes.Size = new Size(671, 382);
+            DatagridViewClientes.TabIndex = 5;
             // 
             // BtnBuscar
             // 
@@ -226,7 +226,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(189, 31);
+            toolStrip1.Size = new Size(158, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -309,7 +309,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(159, 24);
+            label6.Location = new Point(129, 22);
             label6.Name = "label6";
             label6.Size = new Size(395, 44);
             label6.TabIndex = 0;
@@ -343,6 +343,7 @@
             GroupBoxDadosCliente.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DatagridViewClientes).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             panel1.ResumeLayout(false);
@@ -369,7 +370,6 @@
         private GroupBox groupBox1;
         private TextBox TxtBuscarNome;
         private Label label9;
-        private ListView listView1;
         private Button BtnBuscar;
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButtonNovo;
@@ -382,5 +382,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButtonCancelar;
         private ToolStripButton toolStripButtonSalvar;
+        private DataGridView DatagridViewClientes;
     }
 }
