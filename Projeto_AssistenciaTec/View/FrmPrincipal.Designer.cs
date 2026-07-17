@@ -73,14 +73,14 @@
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(180, 22);
+            clienteToolStripMenuItem.Size = new Size(120, 22);
             clienteToolStripMenuItem.Text = "Clientes";
             clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
             // técnicosToolStripMenuItem
             // 
             técnicosToolStripMenuItem.Name = "técnicosToolStripMenuItem";
-            técnicosToolStripMenuItem.Size = new Size(180, 22);
+            técnicosToolStripMenuItem.Size = new Size(120, 22);
             técnicosToolStripMenuItem.Text = "Técnicos";
             // 
             // MenuItemOS

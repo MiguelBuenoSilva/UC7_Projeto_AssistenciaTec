@@ -24,17 +24,17 @@ namespace Projeto_AssistenciaTec.Repository
             using var conexao = Conexao.GetConexao();
 
             //Criar o comando que será ernviado ao anco de dados
-            using var comando = new SqlCommand(sql,conexao);
+            using var comando = new SqlCommand(sql, conexao);
 
             //Preencher os campos da instrução sql com os valores
             comando.Parameters.AddWithValue("@Nome", cliente.Nome);
             comando.Parameters.AddWithValue("@Email", cliente.Email);
-            comando.Parameters.AddWithValue("@Telefone",cliente.Telefone);
+            comando.Parameters.AddWithValue("@Telefone", cliente.Telefone);
             comando.Parameters.AddWithValue("@Endereco", cliente.Endereco);
 
 
             //Executar o comando
-            var novoId = (int) comando.ExecuteScalar();// casting
+            var novoId = (int)comando.ExecuteScalar();// casting
 
 
             return novoId;
@@ -52,15 +52,15 @@ namespace Projeto_AssistenciaTec.Repository
 
             //Abrir conexão com o banco de dados
             using var conexao = Conexao.GetConexao();
-            
+
             //Criar o comando
-            using var comando = new SqlCommand( sql,conexao);
+            using var comando = new SqlCommand(sql, conexao);
 
             // Criar um objeto que guarda o resultado do comando SELECT
             using var resultado = comando.ExecuteReader();
 
             //Criar uma lista de clientes vazia
-            List<Cliente> clientes= new List<Cliente>();
+            List<Cliente> clientes = new List<Cliente>();
 
             while (resultado.Read())
             {
@@ -71,12 +71,59 @@ namespace Projeto_AssistenciaTec.Repository
                 cliente.Telefone = resultado.GetString(resultado.GetOrdinal("telefone"));
                 cliente.Endereco = resultado.GetString(resultado.GetOrdinal("endereco"));
                 clientes.Add(cliente);
-                
+
 
 
             }
 
             return clientes;
+        }
+        public int excluir(int id)
+        {
+            //Instrução de exclusão SQL
+            var sql = "DELETE FROM tbl_clientes WHERE  cliente_id = @Id";
+
+            //Abrir conexão com o banco de dados
+            using var conexao = Conexao.GetConexao();
+
+            //Criar o comando
+            using var comando = new SqlCommand(sql, conexao);
+
+            //Substituir o parâmetro @Id do SQL pelo valor do id cliente
+            comando.Parameters.AddWithValue("@Id", id);
+
+            //Executar comando
+            var resultado = comando.ExecuteNonQuery();
+
+            return resultado;
+        }
+
+        public int atualizar(Cliente cliente)
+        {
+            //Instrução SQl para atualização do cliente
+            var sql = "UPDATE tbl_clientes SET nome = @Nome," +
+                " email = @Email," +
+                " telefone = @Telefone," +
+                " endereco = @Endereco" +
+                " WHERE cliente_id = @Id";
+
+            //abrir a conexão com o banco de dados
+            using var conexao = Conexao.GetConexao();
+
+            //Criar o comando que será ernviado ao anco de dados
+            using var comando = new SqlCommand(sql, conexao);
+
+            //Preencher os campos da instrução sql com os valores
+            comando.Parameters.AddWithValue("@Nome", cliente.Nome);
+            comando.Parameters.AddWithValue("@Email", cliente.Email);
+            comando.Parameters.AddWithValue("@Telefone", cliente.Telefone);
+            comando.Parameters.AddWithValue("@Endereco", cliente.Endereco);
+            comando.Parameters.AddWithValue("@Id", cliente.Id);
+
+            //Executar comando
+            var resultado = comando.ExecuteNonQuery();
+
+            return resultado;
         }
     }
 }

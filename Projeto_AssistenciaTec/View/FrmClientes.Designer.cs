@@ -78,6 +78,7 @@
             GroupBoxDadosCliente.Controls.Add(LabelId);
             GroupBoxDadosCliente.Controls.Add(label1);
             GroupBoxDadosCliente.Enabled = false;
+            GroupBoxDadosCliente.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             GroupBoxDadosCliente.Location = new Point(12, 105);
             GroupBoxDadosCliente.Name = "GroupBoxDadosCliente";
             GroupBoxDadosCliente.Size = new Size(319, 488);
@@ -176,6 +177,7 @@
             groupBox1.Controls.Add(BtnBuscar);
             groupBox1.Controls.Add(TxtBuscarNome);
             groupBox1.Controls.Add(label9);
+            groupBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(337, 105);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(680, 488);
@@ -185,18 +187,23 @@
             // 
             // DatagridViewClientes
             // 
+            DatagridViewClientes.AllowUserToResizeColumns = false;
+            DatagridViewClientes.AllowUserToResizeRows = false;
             DatagridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DatagridViewClientes.Location = new Point(3, 98);
             DatagridViewClientes.Name = "DatagridViewClientes";
+            DatagridViewClientes.ReadOnly = true;
             DatagridViewClientes.Size = new Size(671, 382);
             DatagridViewClientes.TabIndex = 5;
+            DatagridViewClientes.CellClick += DatagridViewClientes_CellClick;
+            DatagridViewClientes.CellEnter += DatagridViewClientes_CellEnter;
             // 
             // BtnBuscar
             // 
             BtnBuscar.FlatAppearance.BorderSize = 0;
             BtnBuscar.FlatStyle = FlatStyle.Flat;
             BtnBuscar.Image = (Image)resources.GetObject("BtnBuscar.Image");
-            BtnBuscar.Location = new Point(578, 51);
+            BtnBuscar.Location = new Point(565, 45);
             BtnBuscar.Name = "BtnBuscar";
             BtnBuscar.Size = new Size(47, 42);
             BtnBuscar.TabIndex = 4;
@@ -204,7 +211,7 @@
             // 
             // TxtBuscarNome
             // 
-            TxtBuscarNome.Location = new Point(6, 67);
+            TxtBuscarNome.Location = new Point(6, 55);
             TxtBuscarNome.Name = "TxtBuscarNome";
             TxtBuscarNome.Size = new Size(553, 26);
             TxtBuscarNome.TabIndex = 3;
@@ -212,7 +219,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(6, 44);
+            label9.Location = new Point(6, 32);
             label9.Name = "label9";
             label9.Size = new Size(195, 20);
             label9.TabIndex = 2;
@@ -226,7 +233,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(158, 31);
+            toolStrip1.Size = new Size(189, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -258,6 +265,7 @@
             toolStripButtonDeletar.Name = "toolStripButtonDeletar";
             toolStripButtonDeletar.Size = new Size(28, 28);
             toolStripButtonDeletar.Text = "Deletar";
+            toolStripButtonDeletar.Click += toolStripButtonDeletar_Click;
             // 
             // toolStripSeparator1
             // 

@@ -37,12 +37,14 @@ namespace Projeto_AssistenciaTec.View
 
             DataGridViewTextBoxColumn colunaId = new DataGridViewTextBoxColumn();
             colunaId.DataPropertyName = "Id";
-            colunaId.HeaderText = "Cliente_Id";
+            colunaId.HeaderText = "ClienteId";
+            colunaId.Width = 80;
             DatagridViewClientes.Columns.Add(colunaId);
 
             DataGridViewTextBoxColumn colunaNome = new DataGridViewTextBoxColumn();
             colunaNome.DataPropertyName = "Nome";
             colunaNome.HeaderText = "Nome do Cliente";
+            colunaNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             DatagridViewClientes.Columns.Add(colunaNome);
 
             //Informar de onde vem os dados do datagridview
@@ -107,13 +109,89 @@ namespace Projeto_AssistenciaTec.View
 
             //Criar um repositorio do cliente
             ClienteRepository clienteRepository = new ClienteRepository();
-            var clienteId = clienteRepository.Salvar(cliente);
 
-            //Mostra o id do novo cliente cadastrado
-            LabelId.Text = clienteId.ToString();
+            if(LabelId.Text == String.Empty)
+            {
+                var clienteId = clienteRepository.Salvar(cliente);
 
+                //Mostrar o id do novo cliente cadastrado
+                LabelId.Text = clienteId.ToString();
+            }
+            else
+            {
+                cliente.Id = int.Parse(LabelId.Text);
+                clienteRepository.atualizar(cliente);
+                MessageBox.Show(
+                       "Cliente atualizado com sucesso!",
+                       "Atualização de cliente",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Information
 
+                   );
+            }
+       
             DesabilitarBotoesCancelarSalvar();
+            CarregarGridClientes();
+        }
+
+        private void DatagridViewClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            exibirDadosDoCliente(e);
+        }
+
+        private void DatagridViewClientes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            exibirDadosDoCliente(e);
+        }
+
+        private void exibirDadosDoCliente(DataGridViewCellEventArgs e)
+        {
+            var linha = e.RowIndex;
+
+            if (linha == -1)
+            {
+                linha = 0;
+            }
+            //Recuperar os dados da linha  que foi clicada
+            var linhaSelecionada = DatagridViewClientes.Rows[linha];
+            var clienteSelecionado = linhaSelecionada.DataBoundItem as Cliente;
+
+            LabelId.Text = clienteSelecionado.Id.ToString();
+            TxtNome.Text = clienteSelecionado.Nome;
+            TxtEmail.Text = clienteSelecionado.Email;
+            TxtEndereco.Text = clienteSelecionado.Endereco;
+            TxtTelefone.Text = clienteSelecionado.Telefone;
+        }
+
+        private void toolStripButtonDeletar_Click(object sender, EventArgs e)
+        {
+            //Confirmar se a exclusão deverá ocorrer
+            var resposta = MessageBox.Show(
+                "Confirma a exclusão do cliente selecionado?",
+                   "Exclusão de cliente",
+                   MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Question
+               );
+            if (resposta == DialogResult.Yes)
+            {
+                var clienteRepository = new ClienteRepository();
+                var idSelecionado = int.Parse(LabelId.Text);
+
+                var excluidos = clienteRepository.excluir(idSelecionado);
+
+                if (excluidos > 0)
+                {
+                    MessageBox.Show(
+                        "Cliente excluido com sucesso!",
+                        "Exclusão de cliente",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+
+                    );
+                    CarregarGridClientes();
+                }
+            }
+
         }
     }
 }
