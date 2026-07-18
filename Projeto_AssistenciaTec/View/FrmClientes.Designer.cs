@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
             GroupBoxDadosCliente = new GroupBox();
             TxtEndereco = new TextBox();
@@ -43,7 +44,7 @@
             groupBox1 = new GroupBox();
             DatagridViewClientes = new DataGridView();
             BtnBuscar = new Button();
-            TxtBuscarNome = new TextBox();
+            TxtBuscarPorNome = new TextBox();
             label9 = new Label();
             toolStrip1 = new ToolStrip();
             toolStripButtonNovo = new ToolStripButton();
@@ -56,6 +57,7 @@
             pictureBox1 = new PictureBox();
             label6 = new Label();
             panel2 = new Panel();
+            errorProvider1 = new ErrorProvider(components);
             GroupBoxDadosCliente.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DatagridViewClientes).BeginInit();
@@ -63,6 +65,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // GroupBoxDadosCliente
@@ -123,7 +126,7 @@
             // 
             TxtEmail.Location = new Point(9, 191);
             TxtEmail.Name = "TxtEmail";
-            TxtEmail.Size = new Size(298, 26);
+            TxtEmail.Size = new Size(276, 26);
             TxtEmail.TabIndex = 5;
             // 
             // label2
@@ -139,7 +142,7 @@
             // 
             TxtNome.Location = new Point(9, 118);
             TxtNome.Name = "TxtNome";
-            TxtNome.Size = new Size(298, 26);
+            TxtNome.Size = new Size(276, 26);
             TxtNome.TabIndex = 3;
             // 
             // label3
@@ -175,7 +178,7 @@
             // 
             groupBox1.Controls.Add(DatagridViewClientes);
             groupBox1.Controls.Add(BtnBuscar);
-            groupBox1.Controls.Add(TxtBuscarNome);
+            groupBox1.Controls.Add(TxtBuscarPorNome);
             groupBox1.Controls.Add(label9);
             groupBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(337, 105);
@@ -208,13 +211,14 @@
             BtnBuscar.Size = new Size(47, 42);
             BtnBuscar.TabIndex = 4;
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
-            // TxtBuscarNome
+            // TxtBuscarPorNome
             // 
-            TxtBuscarNome.Location = new Point(6, 55);
-            TxtBuscarNome.Name = "TxtBuscarNome";
-            TxtBuscarNome.Size = new Size(553, 26);
-            TxtBuscarNome.TabIndex = 3;
+            TxtBuscarPorNome.Location = new Point(6, 55);
+            TxtBuscarPorNome.Name = "TxtBuscarPorNome";
+            TxtBuscarPorNome.Size = new Size(553, 26);
+            TxtBuscarPorNome.TabIndex = 3;
             // 
             // label9
             // 
@@ -233,7 +237,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(189, 31);
+            toolStrip1.Size = new Size(158, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -332,6 +336,11 @@
             panel2.Size = new Size(1035, 43);
             panel2.TabIndex = 5;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.AlwaysBlink;
+            errorProvider1.ContainerControl = this;
+            // 
             // FrmClientes
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -359,6 +368,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -376,7 +386,7 @@
         private Label label2;
         private TextBox TxtNome;
         private GroupBox groupBox1;
-        private TextBox TxtBuscarNome;
+        private TextBox TxtBuscarPorNome;
         private Label label9;
         private Button BtnBuscar;
         private ToolStrip toolStrip1;
@@ -391,5 +401,6 @@
         private ToolStripButton toolStripButtonCancelar;
         private ToolStripButton toolStripButtonSalvar;
         private DataGridView DatagridViewClientes;
+        private ErrorProvider errorProvider1;
     }
 }

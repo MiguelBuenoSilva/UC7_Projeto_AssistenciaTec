@@ -51,6 +51,34 @@ namespace Projeto_AssistenciaTec.View
             DatagridViewClientes.DataSource = clientes;
 
         }
+        private void CarregarGridClientes(string nome)
+        {
+            //Criar o repositorio
+            ClienteRepository clienteRepository = new ClienteRepository();
+
+            //Obter a lista do repositorio
+            clientes = clienteRepository.ListarPorNome(nome);
+
+            //Carregar o DatagridView com os dados
+            DatagridViewClientes.Columns.Clear();
+            DatagridViewClientes.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn colunaId = new DataGridViewTextBoxColumn();
+            colunaId.DataPropertyName = "Id";
+            colunaId.HeaderText = "ClienteId";
+            colunaId.Width = 80;
+            DatagridViewClientes.Columns.Add(colunaId);
+
+            DataGridViewTextBoxColumn colunaNome = new DataGridViewTextBoxColumn();
+            colunaNome.DataPropertyName = "Nome";
+            colunaNome.HeaderText = "Nome do Cliente";
+            colunaNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DatagridViewClientes.Columns.Add(colunaNome);
+
+            //Informar de onde vem os dados do datagridview
+            DatagridViewClientes.DataSource = clientes;
+
+        }
 
         private void DesabilitarBotoesCancelarSalvar()
         {
@@ -102,15 +130,50 @@ namespace Projeto_AssistenciaTec.View
         {
             //Criar um objeto Cliente
             Cliente cliente = new Cliente();
-            cliente.Nome = TxtNome.Text;
-            cliente.Telefone = TxtTelefone.Text;
-            cliente.Email = TxtEmail.Text;
-            cliente.Endereco = TxtEndereco.Text;
+
+            errorProvider1.Clear();
+            LimparControlesPreenchidos();
+
+            try
+            {
+                cliente.Nome = TxtNome.Text;
+                cliente.Email = TxtEmail.Text;
+                cliente.Telefone = TxtTelefone.Text;
+                cliente.Endereco = TxtEndereco.Text;
+            }
+            catch (ArgumentException erro)
+            {
+                if (erro.ParamName == "Nome")
+                {
+                    errorProvider1.SetError(TxtNome, "Este campo é obrigatório");
+                    TxtNome.BackColor = Color.LightCoral;
+                }
+                else if (erro.ParamName == "Endereco") // ou "Endereço", dependendo de como está na sua classe
+                {
+                    errorProvider1.SetError(TxtEndereco, "Este campo é obrigatório");
+                    TxtEndereco.BackColor = Color.LightCoral;
+                }
+                else if (erro.ParamName == "Email")
+                {
+                    errorProvider1.SetError(TxtEmail, "Este campo é obrigatório");
+                    TxtEmail.BackColor = Color.LightCoral;
+                }
+                else if (erro.ParamName == "Telefone")
+                {
+                    errorProvider1.SetError(TxtTelefone, "Este campo é obrigatório");
+                    TxtTelefone.BackColor = Color.LightCoral;
+                }
+
+                return;
+
+            }
+            errorProvider1.Clear();
+
 
             //Criar um repositorio do cliente
             ClienteRepository clienteRepository = new ClienteRepository();
 
-            if(LabelId.Text == String.Empty)
+            if (LabelId.Text == String.Empty)
             {
                 var clienteId = clienteRepository.Salvar(cliente);
 
@@ -129,9 +192,17 @@ namespace Projeto_AssistenciaTec.View
 
                    );
             }
-       
+
             DesabilitarBotoesCancelarSalvar();
             CarregarGridClientes();
+        }
+
+        private void LimparControlesPreenchidos()
+        {
+            if (TxtNome.Text != String.Empty)
+            {
+                TxtNome.BackColor = Color.White;
+            }
         }
 
         private void DatagridViewClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -192,6 +263,11 @@ namespace Projeto_AssistenciaTec.View
                 }
             }
 
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            CarregarGridClientes(TxtBuscarPorNome.Text);
         }
     }
 }
