@@ -1,3 +1,5 @@
+using Projeto_AssistenciaTec.View;
+
 namespace Projeto_AssistenciaTec
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Projeto_AssistenciaTec
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FrmPrincipal());
+            Application.Run(new FrmLogin());
         }
     }
 }

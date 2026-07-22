@@ -7,6 +7,7 @@ namespace Projeto_AssistenciaTec
     {
 
         private FrmClientes frmClientes = null;
+        private FrmTecnicos frmTecnicos = null;
 
         public FrmPrincipal()
         {
@@ -33,7 +34,49 @@ namespace Projeto_AssistenciaTec
                     frmClientes.WindowState = FormWindowState.Normal;
                 }
             }
-               
+
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var resposta = MessageBox.Show(
+                "Deseja realmente fechar a aplicação?",
+                "Fechar aplicação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+
+            if (resposta == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void técnicosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmTecnicos == null || frmTecnicos.IsDisposed)
+            {
+                frmTecnicos = new FrmTecnicos();
+                frmTecnicos.MdiParent = this;
+                frmTecnicos.Show();
+            }
+            else
+            {
+                if (frmTecnicos.WindowState == FormWindowState.Minimized)
+                {
+                    frmTecnicos.WindowState = FormWindowState.Normal;
+                }
+            }
         }
     }
 }

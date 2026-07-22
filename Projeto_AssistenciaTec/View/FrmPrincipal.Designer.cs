@@ -62,6 +62,7 @@
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             sairToolStripMenuItem.Size = new Size(93, 22);
             sairToolStripMenuItem.Text = "Sair";
+            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // MenuItemCadastro
             // 
@@ -73,15 +74,16 @@
             // clienteToolStripMenuItem
             // 
             clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            clienteToolStripMenuItem.Size = new Size(120, 22);
+            clienteToolStripMenuItem.Size = new Size(180, 22);
             clienteToolStripMenuItem.Text = "Clientes";
             clienteToolStripMenuItem.Click += clienteToolStripMenuItem_Click;
             // 
             // técnicosToolStripMenuItem
             // 
             técnicosToolStripMenuItem.Name = "técnicosToolStripMenuItem";
-            técnicosToolStripMenuItem.Size = new Size(120, 22);
+            técnicosToolStripMenuItem.Size = new Size(180, 22);
             técnicosToolStripMenuItem.Text = "Técnicos";
+            técnicosToolStripMenuItem.Click += técnicosToolStripMenuItem_Click;
             // 
             // MenuItemOS
             // 
@@ -115,6 +117,7 @@
             Name = "FrmPrincipal";
             Text = "Gestão de Ordem de Serviços";
             WindowState = FormWindowState.Maximized;
+            FormClosing += FrmPrincipal_FormClosing;
             TsmPrincipal.ResumeLayout(false);
             TsmPrincipal.PerformLayout();
             ResumeLayout(false);

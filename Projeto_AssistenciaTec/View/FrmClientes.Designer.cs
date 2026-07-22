@@ -237,7 +237,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(158, 31);
+            toolStrip1.Size = new Size(189, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -320,7 +320,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.Red;
+            label6.ForeColor = Color.MediumBlue;
             label6.Location = new Point(129, 22);
             label6.Name = "label6";
             label6.Size = new Size(395, 44);
@@ -355,7 +355,7 @@
             MaximizeBox = false;
             Name = "FrmClientes";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmClientes";
+            Text = "Cadastro de Clientes";
             GroupBoxDadosCliente.ResumeLayout(false);
             GroupBoxDadosCliente.PerformLayout();
             groupBox1.ResumeLayout(false);
