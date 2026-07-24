@@ -47,6 +47,8 @@
             TxtBuscarPorNome = new TextBox();
             LblBuscarTecnicoPorNome = new Label();
             GroupBoxDadosCliente = new GroupBox();
+            TxtEndereco = new TextBox();
+            LblEndereco = new Label();
             TxtEspecialidadeTecnico = new TextBox();
             LblEspecialidade = new Label();
             TxtTelefoneTecnico = new TextBox();
@@ -58,6 +60,7 @@
             LabelId = new Label();
             label1 = new Label();
             errorProvider1 = new ErrorProvider(components);
+            label2 = new Label();
             panel2.SuspendLayout();
             toolStrip1.SuspendLayout();
             panel1.SuspendLayout();
@@ -72,7 +75,7 @@
             // 
             panel2.BackColor = Color.White;
             panel2.Controls.Add(toolStrip1);
-            panel2.Location = new Point(-3, 619);
+            panel2.Location = new Point(-3, 656);
             panel2.Name = "panel2";
             panel2.Size = new Size(1035, 43);
             panel2.TabIndex = 9;
@@ -85,7 +88,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(189, 31);
+            toolStrip1.Size = new Size(158, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -96,7 +99,9 @@
             toolStripButtonNovo.ImageTransparentColor = Color.Magenta;
             toolStripButtonNovo.Name = "toolStripButtonNovo";
             toolStripButtonNovo.Size = new Size(28, 28);
-            toolStripButtonNovo.Text = "Novo Cliente";
+            toolStripButtonNovo.Text = "Novo Tecnico";
+            toolStripButtonNovo.ToolTipText = "Novo Tecnico";
+            toolStripButtonNovo.Click += toolStripButtonNovo_Click;
             // 
             // toolStripButtonEditar
             // 
@@ -106,6 +111,7 @@
             toolStripButtonEditar.Name = "toolStripButtonEditar";
             toolStripButtonEditar.Size = new Size(28, 28);
             toolStripButtonEditar.Text = "Editar";
+            toolStripButtonEditar.Click += toolStripButtonEditar_Click;
             // 
             // toolStripButtonDeletar
             // 
@@ -115,6 +121,7 @@
             toolStripButtonDeletar.Name = "toolStripButtonDeletar";
             toolStripButtonDeletar.Size = new Size(28, 28);
             toolStripButtonDeletar.Text = "Deletar";
+            toolStripButtonDeletar.Click += toolStripButtonDeletar_Click;
             // 
             // toolStripSeparator1
             // 
@@ -129,6 +136,7 @@
             toolStripButtonCancelar.Name = "toolStripButtonCancelar";
             toolStripButtonCancelar.Size = new Size(28, 28);
             toolStripButtonCancelar.Text = "Cancelar";
+            toolStripButtonCancelar.Click += toolStripButtonCancelar_Click;
             // 
             // toolStripButtonSalvar
             // 
@@ -138,11 +146,12 @@
             toolStripButtonSalvar.Name = "toolStripButtonSalvar";
             toolStripButtonSalvar.Size = new Size(28, 28);
             toolStripButtonSalvar.Text = "Salvar";
-            
+            toolStripButtonSalvar.Click += toolStripButtonSalvar_Click;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.White;
+            panel1.BackColor = Color.MidnightBlue;
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label6);
             panel1.Location = new Point(-3, 0);
@@ -152,10 +161,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(20, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(90, 83);
+            pictureBox1.Size = new Size(103, 83);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -163,11 +173,12 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.MediumBlue;
-            label6.Location = new Point(129, 22);
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Century Gothic", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.WhiteSmoke;
+            label6.Location = new Point(137, 9);
             label6.Name = "label6";
-            label6.Size = new Size(410, 44);
+            label6.Size = new Size(384, 41);
             label6.TabIndex = 0;
             label6.Text = "Cadastro de Técnicos";
             // 
@@ -180,7 +191,7 @@
             groupBox1.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(336, 105);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(680, 488);
+            groupBox1.Size = new Size(680, 539);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Lista de técnicos cadastrados:";
@@ -193,8 +204,10 @@
             DatagridViewTecnicos.Location = new Point(3, 98);
             DatagridViewTecnicos.Name = "DatagridViewTecnicos";
             DatagridViewTecnicos.ReadOnly = true;
-            DatagridViewTecnicos.Size = new Size(671, 382);
+            DatagridViewTecnicos.Size = new Size(671, 435);
             DatagridViewTecnicos.TabIndex = 5;
+            DatagridViewTecnicos.CellClick += DatagridViewTecnicos_CellClick;
+            DatagridViewTecnicos.CellEnter += DatagridViewTecnicos_CellEnter;
             // 
             // BtnBuscar
             // 
@@ -206,6 +219,7 @@
             BtnBuscar.Size = new Size(47, 42);
             BtnBuscar.TabIndex = 4;
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // TxtBuscarPorNome
             // 
@@ -225,6 +239,8 @@
             // 
             // GroupBoxDadosCliente
             // 
+            GroupBoxDadosCliente.Controls.Add(TxtEndereco);
+            GroupBoxDadosCliente.Controls.Add(LblEndereco);
             GroupBoxDadosCliente.Controls.Add(TxtEspecialidadeTecnico);
             GroupBoxDadosCliente.Controls.Add(LblEspecialidade);
             GroupBoxDadosCliente.Controls.Add(TxtTelefoneTecnico);
@@ -239,31 +255,48 @@
             GroupBoxDadosCliente.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             GroupBoxDadosCliente.Location = new Point(11, 105);
             GroupBoxDadosCliente.Name = "GroupBoxDadosCliente";
-            GroupBoxDadosCliente.Size = new Size(319, 488);
+            GroupBoxDadosCliente.Size = new Size(319, 539);
             GroupBoxDadosCliente.TabIndex = 6;
             GroupBoxDadosCliente.TabStop = false;
             GroupBoxDadosCliente.Text = "Dados do técnico:";
             // 
+            // TxtEndereco
+            // 
+            TxtEndereco.Location = new Point(6, 284);
+            TxtEndereco.Multiline = true;
+            TxtEndereco.Name = "TxtEndereco";
+            TxtEndereco.Size = new Size(282, 135);
+            TxtEndereco.TabIndex = 9;
+            // 
+            // LblEndereco
+            // 
+            LblEndereco.AutoSize = true;
+            LblEndereco.Location = new Point(9, 261);
+            LblEndereco.Name = "LblEndereco";
+            LblEndereco.Size = new Size(170, 20);
+            LblEndereco.TabIndex = 8;
+            LblEndereco.Text = "Endereço do técnico:";
+            // 
             // TxtEspecialidadeTecnico
             // 
-            TxtEspecialidadeTecnico.Location = new Point(6, 317);
+            TxtEspecialidadeTecnico.Location = new Point(6, 445);
             TxtEspecialidadeTecnico.Multiline = true;
             TxtEspecialidadeTecnico.Name = "TxtEspecialidadeTecnico";
-            TxtEspecialidadeTecnico.Size = new Size(298, 163);
-            TxtEspecialidadeTecnico.TabIndex = 9;
+            TxtEspecialidadeTecnico.Size = new Size(279, 79);
+            TxtEspecialidadeTecnico.TabIndex = 11;
             // 
             // LblEspecialidade
             // 
             LblEspecialidade.AutoSize = true;
-            LblEspecialidade.Location = new Point(0, 294);
+            LblEspecialidade.Location = new Point(6, 422);
             LblEspecialidade.Name = "LblEspecialidade";
             LblEspecialidade.Size = new Size(201, 20);
-            LblEspecialidade.TabIndex = 8;
+            LblEspecialidade.TabIndex = 10;
             LblEspecialidade.Text = "Especialidade do técnico:";
             // 
             // TxtTelefoneTecnico
             // 
-            TxtTelefoneTecnico.Location = new Point(6, 255);
+            TxtTelefoneTecnico.Location = new Point(9, 232);
             TxtTelefoneTecnico.Name = "TxtTelefoneTecnico";
             TxtTelefoneTecnico.Size = new Size(157, 26);
             TxtTelefoneTecnico.TabIndex = 7;
@@ -271,7 +304,7 @@
             // LblTelefoneTecnico
             // 
             LblTelefoneTecnico.AutoSize = true;
-            LblTelefoneTecnico.Location = new Point(6, 232);
+            LblTelefoneTecnico.Location = new Point(9, 209);
             LblTelefoneTecnico.Name = "LblTelefoneTecnico";
             LblTelefoneTecnico.Size = new Size(160, 20);
             LblTelefoneTecnico.TabIndex = 6;
@@ -279,7 +312,7 @@
             // 
             // TxtEmailTecnico
             // 
-            TxtEmailTecnico.Location = new Point(9, 191);
+            TxtEmailTecnico.Location = new Point(9, 168);
             TxtEmailTecnico.Name = "TxtEmailTecnico";
             TxtEmailTecnico.Size = new Size(276, 26);
             TxtEmailTecnico.TabIndex = 5;
@@ -287,7 +320,7 @@
             // LblEmailTecnico
             // 
             LblEmailTecnico.AutoSize = true;
-            LblEmailTecnico.Location = new Point(6, 168);
+            LblEmailTecnico.Location = new Point(6, 145);
             LblEmailTecnico.Name = "LblEmailTecnico";
             LblEmailTecnico.Size = new Size(140, 20);
             LblEmailTecnico.TabIndex = 4;
@@ -295,7 +328,7 @@
             // 
             // TxtNomeTecnico
             // 
-            TxtNomeTecnico.Location = new Point(9, 118);
+            TxtNomeTecnico.Location = new Point(9, 102);
             TxtNomeTecnico.Name = "TxtNomeTecnico";
             TxtNomeTecnico.Size = new Size(276, 26);
             TxtNomeTecnico.TabIndex = 3;
@@ -303,7 +336,7 @@
             // LblNomeTecnico
             // 
             LblNomeTecnico.AutoSize = true;
-            LblNomeTecnico.Location = new Point(6, 91);
+            LblNomeTecnico.Location = new Point(6, 79);
             LblNomeTecnico.Name = "LblNomeTecnico";
             LblNomeTecnico.Size = new Size(138, 20);
             LblNomeTecnico.TabIndex = 2;
@@ -313,17 +346,17 @@
             // 
             LabelId.BackColor = Color.SpringGreen;
             LabelId.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelId.Location = new Point(145, 45);
+            LabelId.Location = new Point(148, 42);
             LabelId.Name = "LabelId";
             LabelId.Size = new Size(59, 26);
             LabelId.TabIndex = 1;
-            LabelId.Text = "49";
+            LabelId.Text = "496";
             LabelId.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 51);
+            label1.Location = new Point(6, 45);
             label1.Name = "label1";
             label1.Size = new Size(114, 20);
             label1.TabIndex = 0;
@@ -333,11 +366,23 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.WhiteSmoke;
+            label2.Location = new Point(137, 53);
+            label2.Name = "label2";
+            label2.Size = new Size(218, 21);
+            label2.TabIndex = 2;
+            label2.Text = "Exibindo dados do Técnico";
+            // 
             // FrmTecnicos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1029, 662);
+            ClientSize = new Size(1035, 701);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(groupBox1);
@@ -392,5 +437,8 @@
         private Label LabelId;
         private Label label1;
         private ErrorProvider errorProvider1;
+        private TextBox TxtEndereco;
+        private Label LblEndereco;
+        private Label label2;
     }
 }

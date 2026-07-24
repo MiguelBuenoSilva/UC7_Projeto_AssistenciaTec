@@ -58,6 +58,7 @@
             label6 = new Label();
             panel2 = new Panel();
             errorProvider1 = new ErrorProvider(components);
+            label7 = new Label();
             GroupBoxDadosCliente.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DatagridViewClientes).BeginInit();
@@ -237,7 +238,7 @@
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             toolStrip1.Location = new Point(0, 10);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(189, 31);
+            toolStrip1.Size = new Size(158, 31);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -298,7 +299,8 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.White;
+            panel1.BackColor = Color.MidnightBlue;
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label6);
             panel1.Location = new Point(-2, 0);
@@ -308,6 +310,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(20, 3);
             pictureBox1.Name = "pictureBox1";
@@ -319,11 +322,12 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.MediumBlue;
-            label6.Location = new Point(129, 22);
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Century Gothic", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.WhiteSmoke;
+            label6.Location = new Point(116, 9);
             label6.Name = "label6";
-            label6.Size = new Size(395, 44);
+            label6.Size = new Size(370, 41);
             label6.TabIndex = 0;
             label6.Text = "Cadastro de Clientes";
             // 
@@ -340,6 +344,18 @@
             // 
             errorProvider1.BlinkStyle = ErrorBlinkStyle.AlwaysBlink;
             errorProvider1.ContainerControl = this;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.WhiteSmoke;
+            label7.Location = new Point(120, 53);
+            label7.Name = "label7";
+            label7.Size = new Size(213, 21);
+            label7.TabIndex = 3;
+            label7.Text = "Exibindo dados do Cliente";
             // 
             // FrmClientes
             // 
@@ -402,5 +418,6 @@
         private ToolStripButton toolStripButtonSalvar;
         private DataGridView DatagridViewClientes;
         private ErrorProvider errorProvider1;
+        private Label label7;
     }
 }
